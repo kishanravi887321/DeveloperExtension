@@ -5,7 +5,7 @@
 
 function safeSetItem(key, val) {
     try {
-        safeSetItem(key, val);
+        localStorage.setItem(key, val);
     } catch(e) {
         console.warn('localStorage full:', e);
     }
