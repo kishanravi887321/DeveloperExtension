@@ -1632,7 +1632,7 @@ if (savedLCUser) loadLeetCode(savedLCUser);
                 var card = document.querySelector('.chrono-card');
                 if (card) {
                     card.classList.add('timer-done-flash');
-                    setTimeoutdocument.addEventListener('DOMContentLoaded', function () { card.classList.remove('timer-done-flash'); }, 1600);
+                    setTimeout(function() { card.classList.remove('timer-done-flash'); }, 1600);
                 }
                 return;
             }
@@ -1691,6 +1691,7 @@ if (savedLCUser) loadLeetCode(savedLCUser);
         updateRing();
     })();
 })();
+
 
 
 
