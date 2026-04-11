@@ -35,6 +35,71 @@
         </div>
       </div>
       <div class="tb-r">
+        <div style="position:relative">
+          <button class="theme-switcher-btn" id="theme-btn" title="Change theme">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"/>
+              <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+            </svg>
+          </button>
+          <div class="theme-panel" id="theme-panel">
+            <div class="theme-panel-title">⎔ select theme</div>
+            <div class="theme-option active" data-theme="">
+              <div class="theme-preview">
+                <div class="theme-dot" style="background:#22d3a0"></div>
+                <div class="theme-dot" style="background:#60a5fa"></div>
+                <div class="theme-dot" style="background:#fbbf24"></div>
+              </div>
+              <span class="theme-name">Matrix (Default)</span>
+              <span class="theme-check">✓</span>
+            </div>
+            <div class="theme-option" data-theme="cyberpunk">
+              <div class="theme-preview">
+                <div class="theme-dot" style="background:#ff2d95"></div>
+                <div class="theme-dot" style="background:#00e5ff"></div>
+                <div class="theme-dot" style="background:#a855f7"></div>
+              </div>
+              <span class="theme-name">Cyberpunk Neon</span>
+              <span class="theme-check">✓</span>
+            </div>
+            <div class="theme-option" data-theme="tokyo-night">
+              <div class="theme-preview">
+                <div class="theme-dot" style="background:#73daca"></div>
+                <div class="theme-dot" style="background:#7aa2f7"></div>
+                <div class="theme-dot" style="background:#bb9af7"></div>
+              </div>
+              <span class="theme-name">Tokyo Night</span>
+              <span class="theme-check">✓</span>
+            </div>
+            <div class="theme-option" data-theme="dracula">
+              <div class="theme-preview">
+                <div class="theme-dot" style="background:#50fa7b"></div>
+                <div class="theme-dot" style="background:#8be9fd"></div>
+                <div class="theme-dot" style="background:#bd93f9"></div>
+              </div>
+              <span class="theme-name">Dracula</span>
+              <span class="theme-check">✓</span>
+            </div>
+            <div class="theme-option" data-theme="nord">
+              <div class="theme-preview">
+                <div class="theme-dot" style="background:#a3be8c"></div>
+                <div class="theme-dot" style="background:#88c0d0"></div>
+                <div class="theme-dot" style="background:#b48ead"></div>
+              </div>
+              <span class="theme-name">Nord Aurora</span>
+              <span class="theme-check">✓</span>
+            </div>
+            <div class="theme-option" data-theme="monokai">
+              <div class="theme-preview">
+                <div class="theme-dot" style="background:#a6e22e"></div>
+                <div class="theme-dot" style="background:#66d9ef"></div>
+                <div class="theme-dot" style="background:#f92672"></div>
+              </div>
+              <span class="theme-name">Monokai Pro</span>
+              <span class="theme-check">✓</span>
+            </div>
+          </div>
+        </div>
         <div class="chip speed-chip">
           <svg class="speed-icon" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor"
             stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
