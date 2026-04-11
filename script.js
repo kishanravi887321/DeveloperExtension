@@ -1,6 +1,6 @@
-/* ═══════════════════════════════════════════════════════
+﻿/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    Production Developer New Tab Dashboard
-   ═══════════════════════════════════════════════════════ */
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 'use strict';
 
 function safeSetItem(key, val) {
@@ -11,9 +11,9 @@ function safeSetItem(key, val) {
     }
 }
 
-/* ══════════════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    0. THEME SYSTEM
-   ══════════════════════════════════════════════════════ */
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 const THEME_COLORS = {
     '': { matrix: 'rgba(16,185,129,{a})', bg: 'rgba(8,9,12,0.06)' },
     'cyberpunk': { matrix: 'rgba(255,45,149,{a})', bg: 'rgba(10,10,18,0.06)' },
@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-/* ── Helpers ── */
+/* â”€â”€ Helpers â”€â”€ */
 const $ = (s) => document.querySelector(s);
 const $$ = (s) => document.querySelectorAll(s);
 const pad = (n) => String(n).padStart(2, '0');
@@ -85,9 +85,9 @@ function fmt(n) { return n >= 1e6 ? (n / 1e6).toFixed(1) + 'M' : n >= 1000 ? (n 
 function weekNum(d) { const j = new Date(d.getFullYear(), 0, 1); return Math.ceil(((d - j) / 864e5 + j.getDay() + 1) / 7); }
 function escapeHtml(str) { const d = document.createElement('div'); d.textContent = str; return d.innerHTML; }
 
-/* ══════════════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    1. MATRIX RAIN BACKGROUND
-   ══════════════════════════════════════════════════════ */
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 (function initMatrix() {
     const c = document.getElementById('bg-canvas');
     const ctx = c.getContext('2d');
@@ -95,7 +95,7 @@ function escapeHtml(str) { const d = document.createElement('div'); d.textConten
     resize();
     window.addEventListener('resize', resize);
 
-    const chars = '01アイウエオカキ{}[]<>/|\\ABCDEF';
+    const chars = '01ã‚¢ã‚¤ã‚¦ã‚¨ã‚ªã‚«ã‚­{}[]<>/|\\ABCDEF';
     let drops = [];
     const resetDrops = () => {
         drops = Array.from({ length: Math.floor(c.width / 18) }, () => Math.random() * -60);
@@ -119,9 +119,9 @@ function escapeHtml(str) { const d = document.createElement('div'); d.textConten
 })();
 
 
-/* ══════════════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    2. LIVE CLOCK
-   ══════════════════════════════════════════════════════ */
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 const SESSION_START = Date.now();
 
 function updateClock() {
@@ -144,9 +144,9 @@ updateClock();
 setInterval(updateClock, 1000);
 $('#sid').textContent = Math.random().toString(36).slice(2, 8).toUpperCase();
 
-/* ══════════════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    2b. INTERNET SPEED METER
-   ══════════════════════════════════════════════════════ */
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 (function initSpeedMeter() {
     var prevDown = 0, prevUp = 0, prevTime = performance.now();
 
@@ -215,9 +215,9 @@ $('#sid').textContent = Math.random().toString(36).slice(2, 8).toUpperCase();
     }, 2000);
 })();
 
-/* ══════════════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    3. MULTI-ENGINE SEARCH
-   ══════════════════════════════════════════════════════ */
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 const ENGINES = [
     {
         id: 'google', label: 'Google', url: 'https://google.com/search?q=',
@@ -293,9 +293,9 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-/* ══════════════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    4. GITHUB INTEGRATION
-   ══════════════════════════════════════════════════════ */
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 const LANG_COLORS = {
     JavaScript: '#f1e05a', TypeScript: '#2b7489', Python: '#3572A5', Java: '#b07219',
     'C++': '#f34b7d', C: '#555555', Rust: '#dea584', Go: '#00ADD8',
@@ -459,11 +459,11 @@ function resetGitHub() {
     $('#tb-user').textContent = 'user';
 }
 
-/* ── Contribution Heatmap ── */
+/* â”€â”€ Contribution Heatmap â”€â”€ */
 async function loadContributions(username, repos) {
     const cmap = {};
 
-    // Strategy 1: Scrape GitHub contribution calendar with DOMParser (most complete — full year)
+    // Strategy 1: Scrape GitHub contribution calendar with DOMParser (most complete â€” full year)
     try {
         var calRes = await fetch('https://github.com/users/' + encodeURIComponent(username) + '/contributions');
         if (calRes.ok) {
@@ -574,7 +574,7 @@ function renderHeatmap(cmap) {
     const total = Object.values(cmap).reduce((s, v) => s + v, 0);
     const today = new Date();
 
-    // Build weeks — end on today, start from the Sunday 52 weeks ago
+    // Build weeks â€” end on today, start from the Sunday 52 weeks ago
     const end = new Date(today);
     const start = new Date(today);
     start.setDate(start.getDate() - 52 * 7 - start.getDay());
@@ -685,9 +685,9 @@ function renderHeatmap(cmap) {
     });
 }
 
-/* ══════════════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    5. LEETCODE TRACKER
-   ══════════════════════════════════════════════════════ */
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 let savedLCUser = localStorage.getItem('lc_user') || '';
 
 function bindLCForm() {
@@ -791,7 +791,7 @@ async function loadLeetCode(username) {
 
     var safeUser = encodeURIComponent(username);
 
-    // All fetch strategies — fired in parallel, first valid result wins
+    // All fetch strategies â€” fired in parallel, first valid result wins
     var strategies = [
         // 1. Direct LeetCode GraphQL (works in Chrome extension context)
         function () {
@@ -809,7 +809,7 @@ async function loadLeetCode(username) {
                 body: gqlBody
             }, 20000).then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); }).then(parseGQL);
         },
-        // 3. alfa-leetcode-api /userProfile/ (Render — may have cold start)
+        // 3. alfa-leetcode-api /userProfile/ (Render â€” may have cold start)
         function () {
             return timedFetch('https://alfa-leetcode-api.onrender.com/userProfile/' + safeUser, {}, 30000)
                 .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); }).then(normalize);
@@ -828,7 +828,7 @@ async function loadLeetCode(username) {
 
     var data = null;
 
-    // Race all strategies — Promise.any resolves with first success
+    // Race all strategies â€” Promise.any resolves with first success
     try {
         data = await Promise.any(strategies.map(function (fn) { return fn(); }));
     } catch (e) {
@@ -876,14 +876,14 @@ function renderLeetCode(data, username) {
     const medTotal = data.totalMedium || 1800;
     const hardSolved = data.hardSolved || 0;
     const hardTotal = data.totalHard || 750;
-    const ranking = data.ranking || '—';
-    const acceptance = data.acceptanceRate ? parseFloat(data.acceptanceRate).toFixed(1) : '—';
+    const ranking = data.ranking || 'â€”';
+    const acceptance = data.acceptanceRate ? parseFloat(data.acceptanceRate).toFixed(1) : 'â€”';
     const reputation = data.reputation || 0;
 
     // Stats
     $('#lc-total').textContent = totalSolved + ' / ' + totalQuestions;
-    $('#lc-rank').textContent = ranking !== '—' ? '#' + fmt(ranking) : '—';
-    $('#lc-accept').textContent = acceptance !== '—' ? acceptance + '%' : '—';
+    $('#lc-rank').textContent = ranking !== 'â€”' ? '#' + fmt(ranking) : 'â€”';
+    $('#lc-accept').textContent = acceptance !== 'â€”' ? acceptance + '%' : 'â€”';
     $('#lc-rep').textContent = fmt(reputation);
 
     // Ring
@@ -945,11 +945,11 @@ function resetLeetCode() {
     bindLCForm();
 }
 
-/* (Metrics removed — replaced by LeetCode card) */
+/* (Metrics removed â€” replaced by LeetCode card) */
 
-/* ══════════════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    6. SYSTEM METRICS (CPU / RAM)
-   ══════════════════════════════════════════════════════ */
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 (function initSystemMetrics() {
     var prevCpuInfo = null;
     var smoothCpu = 0;
@@ -992,14 +992,14 @@ function resetLeetCode() {
     }
 
     function updateMetrics() {
-        // ── RAM ──
+        // â”€â”€ RAM â”€â”€
         if (hasChromeMemory) {
             chrome.system.memory.getInfo(function (info) {
                 if (!info) return;
                 setRam(Math.round(((info.capacity - info.availableCapacity) / info.capacity) * 100));
             });
         } else if (performance && performance.memory) {
-            // performance.memory gives JS heap — calculate real browser memory pressure
+            // performance.memory gives JS heap â€” calculate real browser memory pressure
             var used = performance.memory.usedJSHeapSize;
             var limit = performance.memory.jsHeapSizeLimit;
             var total = performance.memory.totalJSHeapSize;
@@ -1011,12 +1011,12 @@ function resetLeetCode() {
             var ramPct = Math.round(((osBaseMB + estimatedBrowserMB) / deviceMB) * 100);
             setRam(Math.min(95, Math.max(25, ramPct)));
         } else {
-            // No memory API — show N/A
+            // No memory API â€” show N/A
             var el = $('#sb-ram-pct');
             if (el) el.textContent = 'N/A';
         }
 
-        // ── CPU ──
+        // â”€â”€ CPU â”€â”€
         if (hasChromeCpu) {
             chrome.system.cpu.getInfo(function (info) {
                 if (!info) return;
@@ -1035,7 +1035,7 @@ function resetLeetCode() {
             // Use long-task observer data + frame timing for CPU estimate
             var now = performance.now();
             var wallTime = now - longTaskStart;
-            // Long tasks are >50ms main-thread blocks — they indicate CPU pressure
+            // Long tasks are >50ms main-thread blocks â€” they indicate CPU pressure
             var ltRatio = wallTime > 0 ? (longTaskMs / wallTime) : 0;
             longTaskMs = 0;
             longTaskStart = now;
@@ -1060,11 +1060,11 @@ function resetLeetCode() {
     setInterval(updateMetrics, 2500);
 })();
 
-/* (Scratchpad removed — replaced by Pet Dog) */
+/* (Scratchpad removed â€” replaced by Pet Dog) */
 
-/* ══════════════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    9. CARD GLOW EFFECT
-   ══════════════════════════════════════════════════════ */
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 $$('.card').forEach((card) => {
     card.addEventListener('mousemove', (e) => {
         const r = card.getBoundingClientRect();
@@ -1073,9 +1073,9 @@ $$('.card').forEach((card) => {
     });
 });
 
-/* ══════════════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    10. STATUS BAR ANIMATION
-   ══════════════════════════════════════════════════════ */
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 setInterval(() => {
     if (Math.random() > 0.72) {
         const cEl = $('#sb-c');
@@ -1083,15 +1083,15 @@ setInterval(() => {
     }
 }, 9000);
 
-/* ══════════════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    11. AUTO-LOAD SAVED PROFILES
-   ══════════════════════════════════════════════════════ */
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 if (savedGHUser) loadGitHub(savedGHUser);
 if (savedLCUser) loadLeetCode(savedLCUser);
 
-/* ══════════════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    12. GREETING WITH NAME
-   ══════════════════════════════════════════════════════ */
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 (function initGreeting() {
     const greetEl = $('#greeting');
     const nameEl = $('#greeting-name');
@@ -1125,9 +1125,9 @@ if (savedLCUser) loadLeetCode(savedLCUser);
     setInterval(render, 60000);
 })();
 
-/* ══════════════════════════════════════════════════════
-   13. WEATHER WIDGET (Open-Meteo — no API key)
-   ══════════════════════════════════════════════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   13. WEATHER WIDGET (Open-Meteo â€” no API key)
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 (function initWeather() {
     const WMO_ICONS = {
         0: '\u2600\ufe0f', 1: '\ud83c\udf24\ufe0f', 2: '\u26c5', 3: '\u2601\ufe0f',
@@ -1206,32 +1206,26 @@ if (savedLCUser) loadLeetCode(savedLCUser);
     }
 
     // Request geolocation
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-            async function (pos) {
-                var lat = pos.coords.latitude.toFixed(4);
-                var lon = pos.coords.longitude.toFixed(4);
-                // Reverse geocode city name from Open-Meteo geocoding
-                var city = 'Your location';
-                try {
-                    var geoRes = await fetch('https://api.open-meteo.com/v1/forecast?latitude=' + lat + '&longitude=' + lon + '&current=temperature_2m&timezone=auto');
-                    if (geoRes.ok) {
-                        var geoData = await geoRes.json();
-                        city = geoData.timezone ? geoData.timezone.split('/').pop().replace(/_/g, ' ') : city;
-                    }
-                } catch (e) { /* keep default */ }
+        // IP-based geolocation
+    async function getIpLocation() {
+        try {
+            var geoRes = await fetch("https://get.geojs.io/v1/ip/geo.json");
+            if (geoRes.ok) {
+                var geoData = await geoRes.json();
+                var lat = geoData.latitude;
+                var lon = geoData.longitude;
+                var city = geoData.city || geoData.region || "Your location";
+                var loc = { lat: lat, lon: lon, city: city };
+                localStorage.setItem(LOC_KEY, JSON.stringify(loc));
                 fetchWeather(lat, lon, city);
-            },
-            function () {
-                // Geolocation denied — use ip-based fallback or show message
-                if (!cached) {
-                    if ($('#weather-desc')) $('#weather-desc').textContent = 'Allow location access';
-                    if ($('#weather-icon')) $('#weather-icon').textContent = '\ud83d\udccd';
-                }
-            },
-            { timeout: 8000 }
-        );
+            }
+        } catch (e) {
+            if (!cached) {
+                if ($("#weather-desc")) $("#weather-desc").textContent = "Location unavailable";
+            }
+        }
     }
+    getIpLocation();
 
     // Refresh every 15 minutes
     setInterval(function () {
@@ -1241,9 +1235,9 @@ if (savedLCUser) loadLeetCode(savedLCUser);
     }, 900000);
 })();
 
-/* ══════════════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    14. WAKATIME CODING STATS
-   ══════════════════════════════════════════════════════ */
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 (function initWakaTime() {
     var savedKey = localStorage.getItem('devtab_waka_key') || '';
 
@@ -1452,11 +1446,11 @@ if (savedLCUser) loadLeetCode(savedLCUser);
     if (savedKey) loadWaka(savedKey);
 })();
 
-/* ══════════════════════════════════════════════════════
-   15. CHRONO CARD — Stopwatch / Timer
-   ══════════════════════════════════════════════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   15. CHRONO CARD â€” Stopwatch / Timer
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 (function initChrono() {
-    /* ── Tab Switching ── */
+    /* â”€â”€ Tab Switching â”€â”€ */
     var tabs = document.querySelectorAll('.chrono-tab');
     var panels = document.querySelectorAll('.chrono-panel');
 
@@ -1471,7 +1465,7 @@ if (savedLCUser) loadLeetCode(savedLCUser);
         });
     });
 
-    /* ── Stopwatch Tick Marks ── */
+    /* â”€â”€ Stopwatch Tick Marks â”€â”€ */
     (function drawSwTicks() {
         var ticksG = document.getElementById('sw-ticks');
         if (!ticksG) return;
@@ -1492,7 +1486,7 @@ if (savedLCUser) loadLeetCode(savedLCUser);
         }
     })();
 
-    /* ── Stopwatch ── */
+    /* â”€â”€ Stopwatch â”€â”€ */
     (function initStopwatch() {
         var display = document.getElementById('sw-display');
         var startBtn = document.getElementById('sw-start');
@@ -1590,7 +1584,7 @@ if (savedLCUser) loadLeetCode(savedLCUser);
         }
     })();
 
-    /* ── Timer ── */
+    /* â”€â”€ Timer â”€â”€ */
     (function initTimer() {
         var timerDisplay = document.getElementById('timer-display');
         var timerLabel = document.getElementById('timer-label');
@@ -1697,3 +1691,4 @@ if (savedLCUser) loadLeetCode(savedLCUser);
         updateRing();
     })();
 })();
+
