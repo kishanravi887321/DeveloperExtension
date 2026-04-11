@@ -3,6 +3,14 @@
    ═══════════════════════════════════════════════════════ */
 'use strict';
 
+function safeSetItem(key, val) {
+    try {
+        safeSetItem(key, val);
+    } catch(e) {
+        console.warn('localStorage full:', e);
+    }
+}
+
 /* ══════════════════════════════════════════════════════
    0. THEME SYSTEM
    ══════════════════════════════════════════════════════ */
@@ -25,7 +33,7 @@ function applyTheme(themeId) {
         document.documentElement.removeAttribute('data-theme');
     }
     try {
-        localStorage.setItem('devtab_theme', themeId);
+        safeSetItem('devtab_theme', themeId);
     } catch (e) {
         console.warn('Could not save theme to localStorage (quota exceeded).');
     }
@@ -318,7 +326,7 @@ async function loadGitHub(username) {
     if (cached && cached.ts && (Date.now() - cached.ts < 600000)) {
         // Use cached data
         savedGHUser = username;
-        localStorage.setItem('gh_user', username);
+        safeSetItem('gh_user', username);
         $('#tb-user').textContent = username;
         renderGHProfile(cached.profile, cached.repos);
         $('#contrib-user-label').textContent = '@' + username;
@@ -351,10 +359,10 @@ async function loadGitHub(username) {
 
         // Cache the response
         try {
-            localStorage.setItem(GH_CACHE_KEY, JSON.stringify({ ts: Date.now(), profile: profile, repos: repos }));
+            safeSetItem(GH_CACHE_KEY, JSON.stringify({ ts: Date.now(), profile: profile, repos: repos }));
         } catch (e) { /* storage full, ignore */ }
 
-        localStorage.setItem('gh_user', username);
+        safeSetItem('gh_user', username);
         savedGHUser = username;
         $('#tb-user').textContent = username;
         renderGHProfile(profile, repos);
@@ -366,7 +374,7 @@ async function loadGitHub(username) {
         // If rate limited but we have OLD cache, use it
         if (cached && cached.profile) {
             savedGHUser = username;
-            localStorage.setItem('gh_user', username);
+            safeSetItem('gh_user', username);
             $('#tb-user').textContent = username;
             renderGHProfile(cached.profile, cached.repos);
             $('#contrib-user-label').textContent = '@' + username;
@@ -557,7 +565,7 @@ async function loadContributions(username, repos) {
     try {
         var existing = JSON.parse(localStorage.getItem(GH_CACHE_KEY)) || {};
         existing.cmap = cmap;
-        localStorage.setItem(GH_CACHE_KEY, JSON.stringify(existing));
+        safeSetItem(GH_CACHE_KEY, JSON.stringify(existing));
     } catch (e) { /* ignore */ }
 }
 
@@ -701,7 +709,7 @@ async function loadLeetCode(username) {
     try { cached = JSON.parse(localStorage.getItem(LC_CACHE_KEY)); } catch (e) { /* ignore */ }
     if (cached && cached.ts && (Date.now() - cached.ts < 300000)) {
         savedLCUser = username;
-        localStorage.setItem('lc_user', username);
+        safeSetItem('lc_user', username);
         renderLeetCode(cached.data, username);
         return;
     }
@@ -832,7 +840,7 @@ async function loadLeetCode(username) {
         // Fall back to any cached data even if stale
         if (cached && cached.data) {
             savedLCUser = username;
-            localStorage.setItem('lc_user', username);
+            safeSetItem('lc_user', username);
             renderLeetCode(cached.data, username);
             return;
         }
@@ -847,10 +855,10 @@ async function loadLeetCode(username) {
 
     // Cache successful data
     try {
-        localStorage.setItem(LC_CACHE_KEY, JSON.stringify({ ts: Date.now(), data: data }));
+        safeSetItem(LC_CACHE_KEY, JSON.stringify({ ts: Date.now(), data: data }));
     } catch (e) { /* ignore */ }
 
-    localStorage.setItem('lc_user', username);
+    safeSetItem('lc_user', username);
     savedLCUser = username;
     renderLeetCode(data, username);
 }
@@ -1108,7 +1116,7 @@ if (savedLCUser) loadLeetCode(savedLCUser);
         const current = localStorage.getItem(STORE_KEY) || 'developer';
         const name = prompt('Enter your name:', current);
         if (name !== null && name.trim()) {
-            localStorage.setItem(STORE_KEY, name.trim());
+            safeSetItem(STORE_KEY, name.trim());
             render();
         }
     });
@@ -1183,7 +1191,7 @@ if (savedLCUser) loadLeetCode(savedLCUser);
                 c.uv_index !== undefined ? c.uv_index.toFixed(1) : '--',
                 city
             );
-            localStorage.setItem(LOC_KEY, JSON.stringify({ lat: lat, lon: lon, city: city }));
+            safeSetItem(LOC_KEY, JSON.stringify({ lat: lat, lon: lon, city: city }));
         } catch (e) {
             if ($('#weather-desc')) $('#weather-desc').textContent = 'Failed to load';
         }
@@ -1318,7 +1326,7 @@ if (savedLCUser) loadLeetCode(savedLCUser);
                 throw lastErr || new Error('All proxies failed. WakaTime may be blocking requests.');
             }
 
-            localStorage.setItem('devtab_waka_key', apiKey);
+            safeSetItem('devtab_waka_key', apiKey);
             savedKey = apiKey;
             renderWaka(data.data);
         } catch (err) {
