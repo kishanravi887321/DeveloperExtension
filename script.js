@@ -3,6 +3,64 @@
    ═══════════════════════════════════════════════════════ */
 'use strict';
 
+/* ══════════════════════════════════════════════════════
+   0. THEME SYSTEM
+   ══════════════════════════════════════════════════════ */
+const THEME_COLORS = {
+    '': { matrix: 'rgba(16,185,129,{a})', bg: 'rgba(8,9,12,0.06)' },
+    'cyberpunk': { matrix: 'rgba(255,45,149,{a})', bg: 'rgba(10,10,18,0.06)' },
+    'tokyo-night': { matrix: 'rgba(122,162,247,{a})', bg: 'rgba(26,27,38,0.06)' },
+    'dracula': { matrix: 'rgba(189,147,249,{a})', bg: 'rgba(33,34,44,0.06)' },
+    'nord': { matrix: 'rgba(136,192,208,{a})', bg: 'rgba(36,41,51,0.06)' },
+    'monokai': { matrix: 'rgba(166,226,46,{a})', bg: 'rgba(29,30,26,0.06)' }
+};
+
+let currentTheme = localStorage.getItem('devtab_theme') || '';
+
+function applyTheme(themeId) {
+    currentTheme = themeId;
+    if (themeId) {
+        document.documentElement.setAttribute('data-theme', themeId);
+    } else {
+        document.documentElement.removeAttribute('data-theme');
+    }
+    localStorage.setItem('devtab_theme', themeId);
+
+    // Update active state in panel
+    document.querySelectorAll('.theme-option').forEach(function (opt) {
+        opt.classList.toggle('active', opt.getAttribute('data-theme') === themeId);
+    });
+}
+
+// Apply saved theme immediately
+applyTheme(currentTheme);
+
+// Theme panel toggle
+document.addEventListener('DOMContentLoaded', function () {
+    var btn = document.getElementById('theme-btn');
+    var panel = document.getElementById('theme-panel');
+    if (!btn || !panel) return;
+
+    btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        panel.classList.toggle('open');
+    });
+
+    document.addEventListener('click', function (e) {
+        if (!panel.contains(e.target) && e.target !== btn) {
+            panel.classList.remove('open');
+        }
+    });
+
+    panel.querySelectorAll('.theme-option').forEach(function (opt) {
+        opt.addEventListener('click', function () {
+            var id = opt.getAttribute('data-theme');
+            applyTheme(id);
+            panel.classList.remove('open');
+        });
+    });
+});
+
 /* ── Helpers ── */
 const $ = (s) => document.querySelector(s);
 const $$ = (s) => document.querySelectorAll(s);
