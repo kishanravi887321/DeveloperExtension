@@ -48,7 +48,7 @@ function applyTheme(themeId) {
 applyTheme(currentTheme);
 
 // Theme panel toggle
-document.addEventListener('DOMContentLoaded', function () {
+(function () {
     var btn = document.getElementById('theme-btn');
     var panel = document.getElementById('theme-panel');
     if (!btn || !panel) return;
@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function () {
             panel.classList.remove('open');
         });
     });
-});
+})();
 
 /* â”€â”€ Helpers â”€â”€ */
 const $ = (s) => document.querySelector(s);
@@ -1691,4 +1691,5 @@ if (savedLCUser) loadLeetCode(savedLCUser);
         updateRing();
     })();
 })();
+
 
