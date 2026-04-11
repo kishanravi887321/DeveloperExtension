@@ -92,17 +92,20 @@ function escapeHtml(str) { const d = document.createElement('div'); d.textConten
     window.addEventListener('resize', resetDrops);
 
     setInterval(() => {
-        ctx.fillStyle = 'rgba(8,9,12,0.06)';
+        var tc = THEME_COLORS[currentTheme] || THEME_COLORS[''];
+        ctx.fillStyle = tc.bg;
         ctx.fillRect(0, 0, c.width, c.height);
         ctx.font = '13px "Geist Mono",monospace';
         drops.forEach((y, i) => {
-            ctx.fillStyle = 'rgba(16,185,129,' + (Math.random() * 0.35 + 0.06) + ')';
+            var alpha = (Math.random() * 0.35 + 0.06);
+            ctx.fillStyle = tc.matrix.replace('{a}', alpha.toFixed(2));
             ctx.fillText(chars[Math.floor(Math.random() * chars.length)], i * 18, y * 18);
             if (y * 18 > c.height && Math.random() > 0.975) drops[i] = 0;
             drops[i] += 0.4;
         });
     }, 80);
 })();
+
 
 /* ══════════════════════════════════════════════════════
    2. LIVE CLOCK
