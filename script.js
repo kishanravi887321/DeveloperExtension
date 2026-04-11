@@ -24,7 +24,11 @@ function applyTheme(themeId) {
     } else {
         document.documentElement.removeAttribute('data-theme');
     }
-    localStorage.setItem('devtab_theme', themeId);
+    try {
+        localStorage.setItem('devtab_theme', themeId);
+    } catch (e) {
+        console.warn('Could not save theme to localStorage (quota exceeded).');
+    }
 
     // Update active state in panel
     document.querySelectorAll('.theme-option').forEach(function (opt) {
