@@ -20,7 +20,17 @@ const THEME_COLORS = {
     'tokyo-night': { matrix: 'rgba(122,162,247,{a})', bg: 'rgba(26,27,38,0.06)' },
     'dracula': { matrix: 'rgba(189,147,249,{a})', bg: 'rgba(33,34,44,0.06)' },
     'nord': { matrix: 'rgba(136,192,208,{a})', bg: 'rgba(36,41,51,0.06)' },
-    'monokai': { matrix: 'rgba(166,226,46,{a})', bg: 'rgba(29,30,26,0.06)' }
+    'monokai': { matrix: 'rgba(166,226,46,{a})', bg: 'rgba(29,30,26,0.06)' },
+    'synthwave': { matrix: 'rgba(255,45,159,{a})', bg: 'rgba(15,5,33,0.06)' },
+    'hacker': { matrix: 'rgba(0,255,65,{a})', bg: 'rgba(0,8,0,0.06)' },
+    'blood-moon': { matrix: 'rgba(255,34,51,{a})', bg: 'rgba(13,0,0,0.06)' },
+    'ocean-deep': { matrix: 'rgba(0,180,216,{a})', bg: 'rgba(0,13,26,0.06)' },
+    'sunset': { matrix: 'rgba(255,107,53,{a})', bg: 'rgba(13,5,0,0.06)' },
+    'mint': { matrix: 'rgba(0,245,212,{a})', bg: 'rgba(0,15,14,0.06)' },
+    'neon-violet': { matrix: 'rgba(179,136,255,{a})', bg: 'rgba(6,4,15,0.06)' },
+    'amber': { matrix: 'rgba(255,183,0,{a})', bg: 'rgba(13,9,0,0.06)' },
+    'cherry': { matrix: 'rgba(255,51,131,{a})', bg: 'rgba(13,0,8,0.06)' },
+    'glacier': { matrix: 'rgba(126,200,227,{a})', bg: 'rgba(2,8,16,0.06)' }
 };
 
 let currentTheme = localStorage.getItem('devtab_theme') || '';

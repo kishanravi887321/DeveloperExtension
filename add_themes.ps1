@@ -1,10 +1,18 @@
-# ── Add 10 new theme options to index.html ──────────────────────
+# Fix HTML: insert 10 themes after the monokai theme-option closing div
 $htmlFile = 'index.html'
 $html = Get-Content $htmlFile -Raw -Encoding UTF8
 
-$anchor = '<span class="theme-name">Monokai Pro</span>'
+# Use a unique anchor - the span+div combo only appears once for monokai
+$anchor = '<span class="theme-name">Monokai Pro</span>' + "`r`n              " + '<span class="theme-check">✓</span>' + "`r`n            </div>"
 
-$newThemes = @'
+if (-not $html.Contains($anchor)) {
+    # Try without \r
+    $anchor = '<span class="theme-name">Monokai Pro</span>' + "`n              " + '<span class="theme-check">✓</span>' + "`n            </div>"
+    Write-Host "Trying LF-only anchor"
+}
+
+if ($html.Contains($anchor)) {
+    $newThemes = @'
 
             <div class="theme-option" data-theme="synthwave">
               <div class="theme-preview">
@@ -97,49 +105,13 @@ $newThemes = @'
               <span class="theme-check">✓</span>
             </div>
 '@
-
-if ($html.Contains($anchor)) {
-    # Find position right after the closing </div> of the monokai option
-    $insertAfter = '<span class="theme-check">✓</span>' + "`r`n            </div>"
-    # We need to find the LAST occurrence of this pattern (the monokai one)
-    $idx = $html.LastIndexOf($insertAfter)
-    if ($idx -ge 0) {
-        $insertPos = $idx + $insertAfter.Length
-        $html = $html.Substring(0, $insertPos) + $newThemes + $html.Substring($insertPos)
-        [System.IO.File]::WriteAllText((Resolve-Path $htmlFile).Path, $html, [System.Text.Encoding]::UTF8)
-        Write-Host "SUCCESS: Added 10 themes to $htmlFile"
-    } else {
-        Write-Host "ERROR: Could not find insert point"
-    }
+    $html = $html.Replace($anchor, $anchor + $newThemes)
+    [System.IO.File]::WriteAllText((Resolve-Path $htmlFile).Path, $html, [System.Text.UTF8Encoding]::new($false))
+    Write-Host "SUCCESS: Added 10 themes to index.html"
 } else {
-    Write-Host "ERROR: Anchor not found in $htmlFile"
-}
-
-# ── Update THEME_COLORS in script.js ────────────────────────────
-$jsFile = 'script.js'
-$js = Get-Content $jsFile -Raw -Encoding UTF8
-
-$oldColors = "    'monokai': { matrix: 'rgba(166,226,46,{a})', bg: 'rgba(29,30,26,0.06)' }"
-$newColors = "    'monokai': { matrix: 'rgba(166,226,46,{a})', bg: 'rgba(29,30,26,0.06)' },
-    'synthwave': { matrix: 'rgba(255,45,159,{a})', bg: 'rgba(15,5,33,0.06)' },
-    'hacker': { matrix: 'rgba(0,255,65,{a})', bg: 'rgba(0,8,0,0.06)' },
-    'blood-moon': { matrix: 'rgba(255,34,51,{a})', bg: 'rgba(13,0,0,0.06)' },
-    'ocean-deep': { matrix: 'rgba(0,180,216,{a})', bg: 'rgba(0,13,26,0.06)' },
-    'sunset': { matrix: 'rgba(255,107,53,{a})', bg: 'rgba(13,5,0,0.06)' },
-    'mint': { matrix: 'rgba(0,245,212,{a})', bg: 'rgba(0,15,14,0.06)' },
-    'neon-violet': { matrix: 'rgba(179,136,255,{a})', bg: 'rgba(6,4,15,0.06)' },
-    'amber': { matrix: 'rgba(255,183,0,{a})', bg: 'rgba(13,9,0,0.06)' },
-    'cherry': { matrix: 'rgba(255,51,131,{a})', bg: 'rgba(13,0,8,0.06)' },
-    'glacier': { matrix: 'rgba(126,200,227,{a})', bg: 'rgba(2,8,16,0.06)' }"
-
-if ($js.Contains($oldColors)) {
-    $js = $js.Replace($oldColors, $newColors)
-    [System.IO.File]::WriteAllText((Resolve-Path $jsFile).Path, $js, [System.Text.Encoding]::UTF8)
-    Write-Host "SUCCESS: Updated THEME_COLORS in $jsFile"
-} else {
-    Write-Host "ERROR: Could not find THEME_COLORS monokai entry in $jsFile"
-    # Show what we're looking for vs what's there
-    $lines = $js -split "`n"
-    $monoLine = $lines | Where-Object { $_ -match 'monokai' } | Select-Object -First 5
-    Write-Host "Found monokai lines: $monoLine"
+    # Debug: show what's near Monokai Pro
+    $idx = $html.IndexOf('Monokai Pro')
+    Write-Host "Monokai Pro found at index: $idx"
+    Write-Host "Context around it:"
+    Write-Host ($html.Substring([Math]::Max(0,$idx-30), 200) | ForEach-Object { $_ -replace "`r", '\r' -replace "`n", '\n' })
 }
