@@ -854,7 +854,7 @@ input {
   -webkit-backdrop-filter: blur(16px);
   backdrop-filter: blur(16px);
   position: relative;
-  overflow: hidden;
+  overflow: visible;
 }
 
 #topbar::after {
@@ -866,6 +866,8 @@ input {
   height: 1px;
   background: linear-gradient(90deg, transparent 0%, var(--g3) 25%, var(--b2) 55%, var(--p2) 80%, transparent 100%);
   opacity: 0.4;
+  pointer-events: none;
+  z-index: 0;
 }
 
 .tb-l {
